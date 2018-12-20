@@ -3,7 +3,7 @@
 ## Basic Usage
 
 ```
-import { Provider, useFetchHook } from 'refetty'
+import { Provider, useFecthEffect } from 'refetty'
 import axios from 'axios'
 
 const fetch = axios.create({
@@ -13,7 +13,7 @@ const fetch = axios.create({
 const client = (req, token) => fetch(req)
 
 export const UsersList = () => {
-  const { data, loading, refresh } = useFetchHook({
+  const { data, loading, refresh } = useFecthEffect({
 		method: 'get',
 		url: '/users
 	})
