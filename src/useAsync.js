@@ -1,26 +1,26 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react'
 
 export function useAsync(promise) {
-	const [error, setError] = useState(false);
-	const [data, setData] = useState([]);
-	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState(false)
+	const [data, setData] = useState([])
+	const [loading, setLoading] = useState(false)
 
 	const refresh = async () => {
-		setLoading(true);
+		setLoading(true)
 
 		try {
-			const { data } = await promise;
-			setData(data);
+			const { data } = await promise
+			setData(data)
 		} catch (err) {
-			setError(err);
+			setError(err)
 		} finally {
-			setLoading(false);
+			setLoading(false)
 		}
-	};
+	}
 
 	useEffect(() => {
-		refresh();
-	}, []);
+		refresh()
+	}, [])
 
-	return { loading, data, error, refresh };
+	return { loading, data, error, refresh }
 }
