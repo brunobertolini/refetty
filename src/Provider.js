@@ -22,15 +22,12 @@ export function useToken() {
 	return { token, setToken }
 }
 
-export function useClient() {
+export const useFetchEffect = fn => {
 	const { client } = useContext(Context)
-	return client
+	return useAsync(fn(client))
 }
 
-export function useFetch(req) {
-	return useClient()(req)
-}
-
-export function useFetchHook(req) {
-	return useAsync(useFetch(req))
+export const useFetchCallback = fn => {
+	const { client } = useContext(Context)
+	return useCallback(params => fn(params)(client), [client])
 }
