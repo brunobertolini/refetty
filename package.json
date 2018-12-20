@@ -17,33 +17,35 @@
 		"url": "http://brunobertolini.com"
 	},
 	"repository": {
-  	"type" : "git",
-  	"url" : "https://github.com/brunobertolini/refetty"
+		"type": "git",
+		"url": "https://github.com/brunobertolini/refetty"
 	},
 	"scripts": {
 		"fix": "yarn fix:lint",
 		"fix:lint": "prettier \"src/**/*.{js,jsx,ts,tsx}\" --write",
 		"lib:watch": "microbundle watch --target browser --name refetty --jsx React.createElement",
 		"lib:build": "microbundle build --target browser --name refetty --jsx React.createElement",
-		"build": "yarn lib:build"
+		"lib:release": "standard-version --no-verify",
+		"build": "yarn lib:build",
+		"prepublish": "yarn build"
 	},
 	"husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
-  "lint-staged": {
-    "*.{{js,jsx,mjs,ts,tsx,md,mdx}}": [
-      "yarn fix",
-      "git add"
-    ]
-  },
+		"hooks": {
+			"pre-commit": "lint-staged",
+			"commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+		}
+	},
+	"commitlint": {
+		"extends": [
+			"@commitlint/config-conventional"
+		]
+	},
+	"lint-staged": {
+		"*.{{js,jsx,mjs,ts,tsx,md,mdx}}": [
+			"yarn fix",
+			"git add"
+		]
+	},
 	"peerDependencies": {
 		"react": "^16.7.0-alpha.2"
 	},
@@ -53,6 +55,7 @@
 		"husky": "^1.2.1",
 		"lint-staged": "^8.1.0",
 		"microbundle": "^0.8.3",
-		"prettier": "^1.15.3"
+		"prettier": "^1.15.3",
+		"standard-version": "^4.4.0"
 	}
 }
