@@ -1,33 +1,21 @@
 import * as React from 'react'
-import {
-	useState,
-	useContext,
-	useMemo,
-	useCallback,
-	createContext,
-} from 'react'
+import { useContext, useMemo, useCallback, createContext } from 'react'
 import { useAsync } from './useAsync'
 
 const Context = createContext({})
 
-export function Provider({ children, client: fetch }) {
-	const [token, setToken] = useState(false)
-	const client = useCallback(req => fetch(req, token), [])
-	const value = useMemo(() => ({ client, token, setToken }), [client, token])
+export function Provider({ client: fetch, state, children }) {
+	const client = useCallback(fetch(state), [state])
+	const value = useMemo(() => ({ client, state }), [client, state])
 	return <Context.Provider value={value}>{children}</Context.Provider>
 }
 
-export function useToken() {
-	const { token, setToken } = useContext(Context)
-	return { token, setToken }
+export const useFetch = params => {
+	const { client } = useContext(Context)
+	return useAsync(client(params))
 }
 
-export const useFetchEffect = fn => {
+export const useClient = () => {
 	const { client } = useContext(Context)
-	return useAsync(fn(client))
-}
-
-export const useFetchCallback = fn => {
-	const { client } = useContext(Context)
-	return useCallback(params => fn(params)(client), [client])
+	return client
 }
