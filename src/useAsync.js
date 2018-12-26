@@ -9,7 +9,7 @@ export function useAsync(promise) {
 		setLoading(true)
 
 		try {
-			const { data } = await promise
+			const { data } = await promise()
 			setData(data)
 		} catch (err) {
 			setError(err)

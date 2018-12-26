@@ -12,7 +12,8 @@ export function Provider({ client: fetch, state, children }) {
 
 export const useFetch = params => {
 	const { client } = useContext(Context)
-	return useAsync(client(params))
+	const fetch = useCallback(() => client(params), [params])
+	return useAsync(fetch)
 }
 
 export const useClient = () => {
