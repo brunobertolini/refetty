@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.0-alpha.5"></a>
+# [0.2.0-alpha.5](https://github.com/brunobertolini/refetty/compare/v0.2.0-alpha.4...v0.2.0-alpha.5) (2018-12-30)
+
+
+### Bug Fixes
+
+* run with args ([c9b15ca](https://github.com/brunobertolini/refetty/commit/c9b15ca))
+
+
+
 <a name="0.2.0-alpha.4"></a>
 # [0.2.0-alpha.4](https://github.com/brunobertolini/refetty/compare/v0.2.0-alpha.3...v0.2.0-alpha.4) (2018-12-30)
 
