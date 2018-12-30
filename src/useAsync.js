@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react'
 
-export function useAsync(promise) {
+export function useAsync(promise, ...args) {
 	const [error, setError] = useState(false)
-	const [data, setData] = useState([])
 	const [loading, setLoading] = useState(true)
+	const [response, setResponse] = useState({})
 
-	const refresh = async () => {
+	async function run() {
 		!loading && setLoading(true)
 
 		try {
-			const { data } = await promise()
-			setData(data)
+			const response = await promise(...args)
+			setResponse(response)
 		} catch (err) {
 			setError(err)
 		} finally {
@@ -18,9 +18,11 @@ export function useAsync(promise) {
 		}
 	}
 
+	const refresh = () => run(...args)
+
 	useEffect(() => {
-		refresh()
+		run(...args)
 	}, [])
 
-	return { loading, data, error, refresh }
+	return { loading, response, error, refresh, run }
 }
