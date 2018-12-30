@@ -5,11 +5,11 @@ export function useAsync(promise, ...args) {
 	const [loading, setLoading] = useState(true)
 	const [response, setResponse] = useState({})
 
-	async function run() {
+	async function run(...params) {
 		!loading && setLoading(true)
 
 		try {
-			const response = await promise(...args)
+			const response = await promise(...params)
 			setResponse(response)
 		} catch (err) {
 			setError(err)
