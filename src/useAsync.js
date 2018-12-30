@@ -3,10 +3,10 @@ import { useState, useEffect } from 'react'
 export function useAsync(promise) {
 	const [error, setError] = useState(false)
 	const [data, setData] = useState([])
-	const [loading, setLoading] = useState(false)
+	const [loading, setLoading] = useState(true)
 
 	const refresh = async () => {
-		setLoading(true)
+		!loading && setLoading(true)
 
 		try {
 			const { data } = await promise()
