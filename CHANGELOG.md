@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.0-alpha.6"></a>
+# [0.2.0-alpha.6](https://github.com/brunobertolini/refetty/compare/v0.2.0-alpha.5...v0.2.0-alpha.6) (2019-01-09)
+
+
+### Features
+
+* **refetty:** add useRefetty to wrap parser func ([02a545c](https://github.com/brunobertolini/refetty/commit/02a545c))
+
+
+
 <a name="0.2.0-alpha.5"></a>
 # [0.2.0-alpha.5](https://github.com/brunobertolini/refetty/compare/v0.2.0-alpha.4...v0.2.0-alpha.5) (2018-12-30)
 
