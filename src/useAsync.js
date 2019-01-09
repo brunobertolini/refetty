@@ -1,20 +1,21 @@
 import { useState, useEffect } from 'react'
 
 export function useAsync(promise, ...args) {
-	const [error, setError] = useState(false)
-	const [loading, setLoading] = useState(true)
-	const [response, setResponse] = useState({})
+	const [state, setState] = useState({
+		loading: true,
+		response: {},
+		error: false,
+	})
 
-	async function run(...params) {
-		!loading && setLoading(true)
+	async function run() {
+		;(!state.loading || state.error) &&
+			setState({ loading: true, error: false })
 
 		try {
-			const response = await promise(...params)
-			setResponse(response)
-		} catch (err) {
-			setError(err)
-		} finally {
-			setLoading(false)
+			const response = await promise(...args)
+			setState({ loading: false, response })
+		} catch (error) {
+			setState({ loading: false, error })
 		}
 	}
 
@@ -24,5 +25,5 @@ export function useAsync(promise, ...args) {
 		run(...args)
 	}, [])
 
-	return { loading, response, error, refresh, run }
+	return { ...state, refresh, run }
 }
