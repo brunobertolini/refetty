@@ -19,11 +19,11 @@ export function useClient() {
 export function useFetch(...args) {
 	const { client } = useContext(Context)
 	const fetch = useCallback(client, [])
-	return useAsync(fetch, ...args)
+	return useAsync(fetch, args.length)(...args)
 }
 
 export const useRefetty = fn => (...args) => {
-	const { run, ...rest } = useFetch(fn(...args))
+	const { run, ...rest } = useFetch(args.length ? fn(...args) : undefined)
 
 	return {
 		...rest,

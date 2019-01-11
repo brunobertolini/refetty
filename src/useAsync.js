@@ -1,18 +1,18 @@
 import { useState, useEffect } from 'react'
 
-export function useAsync(promise, ...args) {
+export const useAsync = (promise, autorun = false) => (...args) => {
 	const [state, setState] = useState({
-		loading: true,
+		loading: autorun,
 		response: {},
 		error: false,
 	})
 
-	async function run() {
+	async function run(...params) {
 		;(!state.loading || state.error) &&
 			setState({ loading: true, error: false })
 
 		try {
-			const response = await promise(...args)
+			const response = await promise(...params)
 			setState({ loading: false, response })
 		} catch (error) {
 			setState({ loading: false, error })
@@ -21,9 +21,10 @@ export function useAsync(promise, ...args) {
 
 	const refresh = () => run(...args)
 
-	useEffect(() => {
-		run(...args)
-	}, [])
+	autorun &&
+		useEffect(() => {
+			run(...args)
+		}, [])
 
 	return { ...state, refresh, run }
 }
