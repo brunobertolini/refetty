@@ -1,26 +1,26 @@
 import { useState, useEffect } from 'react'
 
-export const useAsync = promise => (...args) => {
+export const useAsync = (promise, { mutation, initial } = {}) => {
 	const [state, setState] = useState({
-		loading: !!args.length,
+		loading: initial ? true : false,
 		error: false,
 	})
 
-	async function run(...params) {
+	async function run(...args) {
 		;(!state.loading || state.error) &&
 			setState({ loading: true, error: false })
 
 		try {
-			const result = await promise(...params)
+			const result = await promise(...(mutation ? mutation(...args) : args))
 			setState({ loading: false, result })
 		} catch (error) {
 			setState({ loading: false, error })
 		}
 	}
 
-	args.length &&
+	initial &&
 		useEffect(() => {
-			run(...args)
+			run(...initial)
 			return () => {}
 		}, [])
 
