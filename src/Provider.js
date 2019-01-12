@@ -5,31 +5,26 @@ import { useAsync } from './useAsync'
 
 const Context = createContext({})
 
-export function Provider({ client: fetch, state, children }) {
-	const client = useCallback(fetch(state), [state])
-	const value = useMemo(() => ({ client, state }), [client, state])
+export function Provider({ client: hoc, children, ...props }) {
+	const client = useCallback(hoc(props), [props])
+	const value = useMemo(() => ({ client, ...props }), [client, props])
 	return <Context.Provider value={value}>{children}</Context.Provider>
 }
 
-export function useClient() {
+const useClient = () => {
 	const { client } = useContext(Context)
 	return client
 }
 
-export function useFetch(...args) {
-	const { client } = useContext(Context)
-	const fetch = useCallback(client, [])
-	return useAsync(fetch, args.length)(...args)
-}
+export const useFetch = (...args) => useAsync(useClient())(...args)
 
-export const useRefetty = fn => (...args) => {
-	const { run, ...rest } = useFetch(args.length ? fn(...args) : undefined)
-
-	return {
-		...rest,
-		run: compose(
-			run,
-			fn
-		),
-	}
-}
+export const useRefetty = fn => (...args) =>
+	useAsync(
+		useCallback(
+			compose(
+				useClient(),
+				fn
+			),
+			[]
+		)
+	)(...args)
