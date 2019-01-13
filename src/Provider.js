@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { useContext, useMemo, useCallback, createContext } from 'react'
+import { compose } from 'ramda'
 
 import { useAsync } from './useAsync'
 
@@ -18,8 +19,11 @@ export const useClient = () => {
 
 export const useFetch = (...initial) => useAsync(useClient(), { initial })
 
-export const useRefetty = (mutation, initial) => (params = initial) =>
-	useAsync(useClient(), {
-		mutation: params => [mutation(params)],
-		initial: params ? [params] : false,
-	})
+export const useRefetty = (mutation, ...initial) => (...params) =>
+	useAsync(
+		compose(
+			useClient(),
+			mutation
+		),
+		params.length ? params : initial.length ? initial : false
+	)

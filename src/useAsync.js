@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-export const useAsync = (promise, { mutation, initial } = {}) => {
+export const useAsync = (promise, initial) => {
 	const [state, setState] = useState({
 		loading: initial ? true : false,
 		error: false,
@@ -11,7 +11,7 @@ export const useAsync = (promise, { mutation, initial } = {}) => {
 			setState({ loading: true, error: false })
 
 		try {
-			const result = await promise(...(mutation ? mutation(...args) : args))
+			const result = await promise(...args)
 			setState({ loading: false, result })
 		} catch (error) {
 			setState({ loading: false, error })
