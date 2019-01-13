@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.0-beta.1"></a>
+# [0.2.0-beta.1](https://github.com/brunobertolini/refetty/compare/v0.2.0-alpha.9...v0.2.0-beta.1) (2019-01-13)
+
+
+### Bug Fixes
+
+* initial in useFetch ([78ac39a](https://github.com/brunobertolini/refetty/commit/78ac39a))
+
+
+
 <a name="0.2.0-alpha.9"></a>
 # [0.2.0-alpha.9](https://github.com/brunobertolini/refetty/compare/v0.2.0-alpha.8...v0.2.0-alpha.9) (2019-01-13)
 
