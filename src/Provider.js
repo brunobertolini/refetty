@@ -18,8 +18,8 @@ export const useClient = () => {
 
 export const useFetch = (...initial) => useAsync(useClient(), { initial })
 
-export const useRefetty = (mutation, initial) => () =>
+export const useRefetty = (mutation, initial) => (params = initial) =>
 	useAsync(useClient(), {
 		mutation: params => [mutation(params)],
-		initial: initial ? [initial] : false,
+		initial: params ? [params] : false,
 	})
