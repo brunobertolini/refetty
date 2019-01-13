@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.0-alpha.9"></a>
+# [0.2.0-alpha.9](https://github.com/brunobertolini/refetty/compare/v0.2.0-alpha.8...v0.2.0-alpha.9) (2019-01-13)
+
+
+### Bug Fixes
+
+* initial params when use ([83bfc5c](https://github.com/brunobertolini/refetty/commit/83bfc5c))
+
+
+### Features
+
+* useAsync with intial and mutation params ([9ccc9f2](https://github.com/brunobertolini/refetty/commit/9ccc9f2))
+* useFetch to run witouht mutation and useRefetty with mutation ([14b5c57](https://github.com/brunobertolini/refetty/commit/14b5c57))
+
+
+
 <a name="0.2.0-alpha.8"></a>
 # [0.2.0-alpha.8](https://github.com/brunobertolini/refetty/compare/v0.2.0-alpha.7...v0.2.0-alpha.8) (2019-01-12)
 
