@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.0-beta.2"></a>
+# [0.2.0-beta.2](https://github.com/brunobertolini/refetty/compare/v0.2.0-beta.1...v0.2.0-beta.2) (2019-01-23)
+
+
+
 <a name="0.2.0-beta.1"></a>
 # [0.2.0-beta.1](https://github.com/brunobertolini/refetty/compare/v0.2.0-alpha.9...v0.2.0-beta.1) (2019-01-13)
 
