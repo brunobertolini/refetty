@@ -38,7 +38,7 @@
 	},
 	"lint-staged": {
 		"*.{{js,jsx,mjs,ts,tsx,md,mdx}}": [
-			"yarn fix",
+			"yarn packages:lint",
 			"git add"
 		]
 	},
