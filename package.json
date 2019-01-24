@@ -8,7 +8,7 @@
 		"lint": "lerna run lint",
 		"dev": "lerna run dev",
 		"build": "lerna run build",
-		"packages": "run-s packages:*",
+		"packages": "npm-run-all packages:*",
 		"packages:lint": "lerna run --parallel lint",
 		"packages:build": "lerna run build",
 		"prerelease": "yarn run packages",
@@ -53,6 +53,7 @@
 		"lerna": "^3.10.7",
 		"lint-staged": "^8.1.0",
 		"microbundle": "^0.9.0",
+		"npm-run-all": "^4.1.5",
 		"prettier": "^1.15.3",
 		"standard-version": "^4.4.0"
 	},
