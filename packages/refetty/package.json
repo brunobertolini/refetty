@@ -30,7 +30,7 @@
 		"url": "https://github.com/brunobertolini/refetty"
 	},
 	"dependencies": {
-		"@refetty/fetch": "file:packages/fetch",
-		"@refetty/use-async": "file:packages/use-async"
+		"@refetty/fetch": "0.2.0-beta.2",
+		"@refetty/use-async": "0.2.0-beta.2"
 	}
 }
