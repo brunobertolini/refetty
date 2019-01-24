@@ -1,5 +1,5 @@
 {
-	"name": "refetty",
+	"name": "@refetty/resource-react",
 	"version": "0.2.0-beta.3",
 	"license": "MIT",
 	"scripts": {
@@ -28,8 +28,7 @@
 	"publishConfig": {
 		"access": "public"
 	},
-	"dependencies": {
-		"@refetty/fetch": "^0.2.0-beta.3",
-		"@refetty/use-async": "^0.2.0-beta.3"
+	"peerDependencies": {
+		"react": "16.7.0-alpha.2"
 	}
 }

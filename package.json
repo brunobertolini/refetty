@@ -10,7 +10,7 @@
 		"packages:build": "lerna run build",
 		"prerelease": "yarn run packages",
 		"release": "lerna publish --conventional-commits",
-		"release:beta": "yarn release --npm-tag=beta --preid=beta"
+		"release:latest": "yarn release --npm-tag=latest --preid=beta"
 	},
 	"author": {
 		"name": "Bruno Bertolini",
