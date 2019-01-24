@@ -25,6 +25,9 @@
 		"type": "git",
 		"url": "https://github.com/brunobertolini/refetty"
 	},
+	"publishConfig": {
+    "access": "public"
+  },
 	"peerDependencies": {
 		"react": "16.7.0-alpha.2"
 	}
