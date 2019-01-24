@@ -5,9 +5,15 @@
 		"setup": "yarn setup:clean && yarn setup:bs",
 		"setup:clean": "lerna clean -y",
 		"setup:bs": "lerna bootstrap",
-		"fix": "lerna run fix",
+		"lint": "lerna run lint",
 		"dev": "lerna run dev",
-		"build": "lerna run build"
+		"build": "lerna run build",
+		"packages": "run-s packages:*",
+		"packages:lint": "lerna run --parallel lint",
+		"packages:build": "lerna run build",
+		"prerelease": "yarn run packages",
+		"release": "lerna publish --conventional-commits",
+		"release:beta": "yarn release --npm-tag=beta --preid=beta"
 	},
 	"author": {
 		"name": "Bruno Bertolini",

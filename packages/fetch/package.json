@@ -3,13 +3,9 @@
 	"version": "0.2.0-beta.2",
 	"license": "MIT",
 	"scripts": {
-		"fix": "yarn fix:lint",
-		"fix:lint": "prettier \"src/**/*.{js,jsx,ts,tsx}\" --write",
-		"lib:dev": "microbundle watch --target browser",
-		"lib:build": "microbundle build --target browser",
-		"lib:release": "standard-version --no-verify",
-		"build": "yarn lib:build",
-		"prepublish": "yarn build"
+		"lint": "prettier \"src/**/*.{js,jsx,ts,tsx}\" --write",
+		"dev": "microbundle watch --target browser",
+		"build": "microbundle build --target browser"
 	},
 	"main": "dist/index.js",
 	"umd:main": "dist/index.umd.js",
