@@ -1,12 +1,12 @@
 import { BehaviorSubject } from 'rxjs'
 
-export const refetty = fetch => {
-	const state = new BehaviorSubject()
+export const createFetch = (fetch, initial) => {
+	const state = new BehaviorSubject(initial)
 	const instance = new BehaviorSubject(fetch(state.value))
 
 	const client = (...params) => instance.value(...params)
 
-	client.setState = v => state.next(v)
+	client.setState = v => state.next(v(state.value))
 	client.state = state.value
 
 	state.subscribe(data => {
@@ -16,5 +16,3 @@ export const refetty = fetch => {
 
 	return client
 }
-
-export default refetty

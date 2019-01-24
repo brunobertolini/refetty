@@ -1,64 +1,56 @@
 {
-  "name": "refetty",
-  "version": "0.2.0-beta.2",
-  "license": "MIT",
-  "main": "dist/index.js",
-  "umd:main": "dist/index.umd.js",
-  "module": "dist/index.m.js",
-  "source": "src/index.js",
-  "files": [
-    "dist/",
-    "package.json",
-    "README.md"
-  ],
-  "author": {
-    "name": "Bruno Bertolini",
-    "email": "dev@brunobertolini.com",
-    "url": "http://brunobertolini.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/brunobertolini/refetty"
-  },
-  "scripts": {
-    "fix": "yarn fix:lint",
-    "fix:lint": "prettier \"src/**/*.{js,jsx,ts,tsx}\" --write",
-    "lib:watch": "microbundle watch --target browser --name refetty --jsx React.createElement",
-    "lib:build": "microbundle build --target browser --name refetty --jsx React.createElement",
-    "lib:release": "standard-version --no-verify",
-    "build": "yarn lib:build",
-    "prepublish": "yarn build"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
-  "lint-staged": {
-    "*.{{js,jsx,mjs,ts,tsx,md,mdx}}": [
-      "yarn fix",
-      "git add"
-    ]
-  },
-  "peerDependencies": {
-    "react": "^16.7.0-alpha.2"
-  },
-  "devDependencies": {
-    "@commitlint/cli": "^7.2.1",
-    "@commitlint/config-conventional": "^7.1.2",
-    "husky": "^1.2.1",
-    "lint-staged": "^8.1.0",
-    "microbundle": "^0.8.3",
-    "prettier": "^1.15.3",
-    "standard-version": "^4.4.0"
-  },
-  "dependencies": {
-    "rxjs": "^6.3.3"
-  }
+	"name": "refetty",
+	"private": true,
+	"scripts": {
+		"setup": "yarn setup:clean && yarn setup:bs",
+		"setup:clean": "lerna clean -y",
+		"setup:bs": "lerna bootstrap",
+		"fix": "lerna run fix",
+		"dev": "lerna run dev",
+		"build": "lerna run build"
+	},
+	"author": {
+		"name": "Bruno Bertolini",
+		"email": "dev@brunobertolini.com",
+		"url": "http://brunobertolini.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/brunobertolini/refetty"
+	},
+	"workspaces": [
+		"packages/*"
+	],
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged",
+			"commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+		}
+	},
+	"commitlint": {
+		"extends": [
+			"@commitlint/config-conventional"
+		]
+	},
+	"lint-staged": {
+		"*.{{js,jsx,mjs,ts,tsx,md,mdx}}": [
+			"yarn fix",
+			"git add"
+		]
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^7.2.1",
+		"@commitlint/config-conventional": "^7.1.2",
+		"husky": "^1.2.1",
+		"lerna": "^3.10.7",
+		"lint-staged": "^8.1.0",
+		"microbundle": "^0.8.3",
+		"prettier": "^1.15.3",
+		"standard-version": "^4.4.0"
+	},
+	"dependencies": {
+		"@refetty/fetch": "file:packages/fetch",
+		"@refetty/use-async": "file:packages/use-async",
+		"refetty": "file:packages/refetty"
+	}
 }
