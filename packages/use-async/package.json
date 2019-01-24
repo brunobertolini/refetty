@@ -1,6 +1,6 @@
 {
 	"name": "@refetty/use-async",
-	"version": "0.2.0-beta.2",
+	"version": "0.2.0-beta.3",
 	"license": "MIT",
 	"scripts": {
 		"lint": "prettier \"src/**/*.{js,jsx,ts,tsx}\" --write",
@@ -26,8 +26,8 @@
 		"url": "https://github.com/brunobertolini/refetty"
 	},
 	"publishConfig": {
-    "access": "public"
-  },
+		"access": "public"
+	},
 	"peerDependencies": {
 		"react": "16.7.0-alpha.2"
 	}

@@ -1,6 +1,6 @@
 {
 	"name": "refetty",
-	"version": "0.2.0-beta.2",
+	"version": "0.2.0-beta.3",
 	"license": "MIT",
 	"scripts": {
 		"lint": "prettier \"src/**/*.{js,jsx,ts,tsx}\" --write",
@@ -29,7 +29,7 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"@refetty/fetch": "0.2.0-beta.2",
-		"@refetty/use-async": "0.2.0-beta.2"
+		"@refetty/fetch": "^0.2.0-beta.3",
+		"@refetty/use-async": "^0.2.0-beta.3"
 	}
 }
