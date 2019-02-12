@@ -53,10 +53,5 @@
 		"npm-run-all": "^4.1.5",
 		"prettier": "^1.15.3",
 		"standard-version": "^4.4.0"
-	},
-	"dependencies": {
-		"@refetty/fetch": "file:packages/fetch",
-		"@refetty/use-async": "file:packages/use-async",
-		"refetty": "file:packages/refetty"
 	}
 }

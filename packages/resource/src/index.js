@@ -1,20 +1,21 @@
 import { BehaviorSubject } from 'rxjs'
+import mitt from 'mitt'
 
-const createAction = (_, action, effect) => (...params) => {
+const createAction = (_, action, name) => (...params) => {
 	const ctx = _.getContext()
 	_.state = _.getState()
 
 	const result = action(_, ctx, ...params)
-	effect && effect(_, ctx, ...params)
+	_.emit(name, ...params)
 
 	return result
 }
 
-const createActions = (_, actions, effects) =>
+const createActions = (_, actions) =>
 	Object.keys(actions).reduce(
 		(memo, name) => ({
 			...memo,
-			[name]: createAction(_, actions[name], effects[name]),
+			[name]: createAction(_, actions[name], name),
 		}),
 		{}
 	)
@@ -50,8 +51,12 @@ export const createResource = ({
 	)
 	const state = new BehaviorSubject({ loading: !!initial })
 	let cancelSource = null
+	const { emit, on, off } = mitt()
 
 	const _ = {
+		on,
+		off,
+		emit,
 		source,
 		modifier,
 		getCancelToken: () => cancelSource.token,
@@ -65,17 +70,30 @@ export const createResource = ({
 		return cancelSource
 	}
 
-	_.read = createAction(_, load, effects.read)
-	_.setState = createAction(_, next(state, _.getState), effects.setState)
-	_.setContext = createAction(_, next(ctx, _.getContext), effects.setContext)
+	_.read = createAction(_, load, 'read')
+	_.setState = createAction(_, next(state, _.getState), 'setState')
+	_.setContext = createAction(_, next(ctx, _.getContext), 'setContext')
 
 	initial && _.read()
 
+	const listner = on(
+		'*',
+		(name, ...params) => effects[name] && effects[name](_, ctx.value, ...params)
+	)
+
+	const destruct = () => {
+		cancelSource && cancelSource.cancel()
+		off(listner)
+	}
+
 	return {
-		...createActions(_, actions, effects),
+		on,
+		off,
+		emit,
+		...createActions(_, actions),
 		read: _.read,
 		getState: () => state,
 		getContext: () => ctx,
-		cancel: cancelSource && cancelSource.cancel,
+		destruct,
 	}
 }

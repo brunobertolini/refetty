@@ -29,6 +29,7 @@
 		"access": "public"
 	},
 	"dependencies": {
+		"mitt": "^1.1.3",
 		"rxjs": "^6.3.3"
 	}
 }

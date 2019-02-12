@@ -7,7 +7,7 @@ export const useResource = (resource, options) => {
 	const [state] = useStateRx(res.getState())
 	const [ctx] = useStateRx(res.getContext())
 
-	useEffect(() => () => res.cancel(), [])
+	useEffect(() => () => res.destruct(), [])
 
 	return [state, ctx, res]
 }
