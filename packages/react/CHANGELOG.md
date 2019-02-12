@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-beta.5](https://github.com/brunobertolini/refetty/compare/v0.2.0-beta.4...v0.2.0-beta.5) (2019-02-12)
+
+
+### Features
+
+* add resource internal emitter ([b49a29c](https://github.com/brunobertolini/refetty/commit/b49a29c))
+
+
+
+
+
 # [0.2.0-beta.4](https://github.com/brunobertolini/refetty/compare/v0.2.0-beta.3...v0.2.0-beta.4) (2019-01-24)
 
 
