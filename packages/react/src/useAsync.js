@@ -1,28 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useMemo } from 'react'
+import { asyncState } from '@refetty/fetch'
+import { useStateRx } from './useStateRx'
 
-export const useAsync = (promise, initial) => {
-	const [state, setState] = useState({
-		loading: initial ? true : false,
-		error: false,
-	})
-
-	async function run(...args) {
-		;(!state.loading || state.error) &&
-			setState({ loading: true, error: false })
-
-		try {
-			const result = await promise(...args)
-			setState({ loading: false, result })
-		} catch (error) {
-			setState({ loading: false, error })
-		}
-	}
-
-	initial &&
-		useEffect(() => {
-			run(...initial)
-			return () => {}
-		}, [])
-
+export const useAsync = promise => {
+	const [, { run, subject }] = useMemo(() => asyncState(promise), [promise])
+	const [state] = useStateRx(subject)
 	return [state, run]
 }
