@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-beta.6](https://github.com/brunobertolini/refetty/compare/v0.2.0-beta.5...v0.2.0-beta.6) (2019-04-17)
+
+
+### Features
+
+* **react:** useAsyn and useCancelable using generic methods ([4f7079a](https://github.com/brunobertolini/refetty/commit/4f7079a))
+
+
+
+
+
 # [0.2.0-beta.5](https://github.com/brunobertolini/refetty/compare/v0.2.0-beta.4...v0.2.0-beta.5) (2019-02-12)
 
 

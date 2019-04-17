@@ -1,6 +1,6 @@
 {
 	"name": "@refetty/fetch",
-	"version": "0.2.0-beta.3",
+	"version": "0.2.0-beta.6",
 	"license": "MIT",
 	"scripts": {
 		"lint": "prettier \"src/**/*.{js,jsx,ts,tsx}\" --write",
