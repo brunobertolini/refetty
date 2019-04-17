@@ -28,6 +28,9 @@
 	"publishConfig": {
 		"access": "public"
 	},
+	"dependencies": {
+		"@refetty/fetch": "latest"
+	},
 	"peerDependencies": {
 		"react": "16.7.0-alpha.2"
 	}
