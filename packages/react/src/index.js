@@ -1,3 +1,5 @@
 export * from './useAsync'
 export * from './useStateRx'
 export * from './useResource'
+export * from './useCancelable'
+export * from './useFetch'
