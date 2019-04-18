@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-beta.9](https://github.com/brunobertolini/refetty/compare/v0.2.0-beta.8...v0.2.0-beta.9) (2019-04-18)
+
+
+### Bug Fixes
+
+* export modules on index ([6146948](https://github.com/brunobertolini/refetty/commit/6146948))
+
+
+
+
+
 # [0.2.0-beta.8](https://github.com/brunobertolini/refetty/compare/v0.2.0-beta.7...v0.2.0-beta.8) (2019-04-18)
 
 
