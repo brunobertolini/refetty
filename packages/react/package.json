@@ -1,6 +1,6 @@
 {
 	"name": "@refetty/react",
-	"version": "0.2.0-beta.7",
+	"version": "0.2.0-beta.8",
 	"license": "MIT",
 	"scripts": {
 		"lint": "prettier \"src/**/*.{js,jsx,ts,tsx}\" --write",
