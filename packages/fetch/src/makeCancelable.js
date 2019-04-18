@@ -5,15 +5,15 @@ export const makeCancelable = ({
 	getCancel,
 	message = 'Canceled',
 }) => {
-	const { value, next } = new BehaviorSubject(false)
+	const subject = new BehaviorSubject(false)
 
 	const getCancelToken = () => {
 		const source = getCancel()
-		next(source)
+		subject.next(source)
 		return source.token
 	}
 
-	const cancel = () => value && value.cancel(message)
+	const cancel = () => subject.value && subject.value.cancel(message)
 
 	const run = (...params) =>
 		handler.apply(fetch, [
