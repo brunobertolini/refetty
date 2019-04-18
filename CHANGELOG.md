@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-beta.7](https://github.com/brunobertolini/refetty/compare/v0.2.0-beta.6...v0.2.0-beta.7) (2019-04-18)
+
+
+### Bug Fixes
+
+* **fetch:** cancelable subject ([ea1e69c](https://github.com/brunobertolini/refetty/commit/ea1e69c))
+
+
+
+
+
 # [0.2.0-beta.6](https://github.com/brunobertolini/refetty/compare/v0.2.0-beta.5...v0.2.0-beta.6) (2019-04-17)
 
 
