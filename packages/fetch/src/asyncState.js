@@ -27,7 +27,7 @@ export const asyncState = (promise, initial) => {
 		}
 	}
 
-	initial && run(...initial)
+	initial && run(initial)
 
 	return [subject, run]
 }
