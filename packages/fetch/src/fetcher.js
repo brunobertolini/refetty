@@ -1,13 +1,13 @@
 import { makeCancelable } from './makeCancelable'
 import { asyncState } from './asyncState'
 
-export const fetcher = ({ initial, source, getCancelToken }) => {
+export const fetcher = ({ source, getCancelToken, lazy }) => {
 	const [exec, cancel] = makeCancelable({
-		handler: source,
+		promise: source,
 		getCancel: getCancelToken,
 	})
 
-	const [state, fetch] = asyncState(exec, initial)
+	const [state, fetch] = asyncState(exec, lazy)
 
 	const run = (...params) => {
 		cancel()

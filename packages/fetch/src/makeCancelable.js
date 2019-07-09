@@ -1,7 +1,7 @@
 import { BehaviorSubject } from 'rxjs'
 
 export const makeCancelable = ({
-	handler,
+	promise,
 	getCancel,
 	message = 'Canceled',
 }) => {
@@ -16,7 +16,7 @@ export const makeCancelable = ({
 	const cancel = () => subject.value && subject.value.cancel(message)
 
 	const run = (...params) =>
-		handler.apply(fetch, [
+		promise.apply(promise, [
 			...((params.length && params) || [{}]),
 			{ cancelToken: getCancelToken() },
 		])

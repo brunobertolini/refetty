@@ -1,13 +1,13 @@
 import { BehaviorSubject } from 'rxjs'
 
-export const asyncState = (promise, initial) => {
+export const asyncState = (promise, lazy = false) => {
 	const subject = new BehaviorSubject({
-		status: initial ? 'loading' : 'idle',
-		loading: initial ? true : false,
+		status: lazy ? 'idle' : 'loading',
+		loading: !lazy,
 	})
 
 	async function run(...args) {
-		;(!subject.value.status !== 'loading' || subject.value.erorr) &&
+		;(subject.value.status !== 'loading' || subject.value.error) &&
 			subject.next({
 				status: 'loading',
 				loading: true,
@@ -27,7 +27,7 @@ export const asyncState = (promise, initial) => {
 		}
 	}
 
-	initial && run(initial)
+	!lazy && run()
 
 	return [subject, run]
 }
