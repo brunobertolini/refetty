@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-beta.12](https://github.com/brunobertolini/refetty/compare/v0.2.0-beta.11...v0.2.0-beta.12) (2019-08-22)
+
+**Note:** Version bump only for package @refetty/react
+
+
+
+
+
 # [0.2.0-beta.11](https://github.com/brunobertolini/refetty/compare/v0.2.0-beta.10...v0.2.0-beta.11) (2019-07-09)
 
 **Note:** Version bump only for package @refetty/react
