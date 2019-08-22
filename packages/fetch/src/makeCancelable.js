@@ -1,25 +1,24 @@
 import { BehaviorSubject } from 'rxjs'
 
-export const makeCancelable = ({
-	promise,
-	getCancel,
-	message = 'Canceled',
-}) => {
+export const makeCancelable = (promise, message = 'Canceled') => {
 	const subject = new BehaviorSubject(false)
 
 	const getCancelToken = () => {
-		const source = getCancel()
+		if (!promise.getCancel) {
+			return ''
+		}
+
+		const source = promise.getCancel()
 		subject.next(source)
 		return source.token
 	}
 
 	const cancel = () => subject.value && subject.value.cancel(message)
 
-	const run = (...params) =>
-		promise.apply(promise, [
-			...((params.length && params) || [{}]),
-			{ cancelToken: getCancelToken() },
-		])
+	const dispatch = (...params) => {
+		const run = promise(...params)
+		return typeof run === 'function' ? run(getCancelToken()) : run
+	}
 
-	return [run, cancel]
+	return [dispatch, cancel]
 }

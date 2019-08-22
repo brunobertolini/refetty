@@ -2,32 +2,27 @@ import { BehaviorSubject } from 'rxjs'
 
 export const asyncState = (promise, lazy = false) => {
 	const subject = new BehaviorSubject({
-		status: lazy ? 'idle' : 'loading',
+		status: lazy ? 'idle' : 'pending',
 		loading: !lazy,
 	})
 
-	async function run(...args) {
-		;(subject.value.status !== 'loading' || subject.value.error) &&
-			subject.next({
-				status: 'loading',
-				loading: true,
-				error: false,
-			})
+	const dispatch = async (...args) => {
+		if (!subject.value.loading || subject.value.error) {
+			subject.next({ status: 'pending', loading: true, error: false })
+		}
 
 		try {
-			const result = await promise(...args)
-			subject.next({
-				status: 'fullfiled',
-				loading: false,
-				error: false,
-				result,
-			})
+			const res = await promise(...args)
+
+			subject.next({ status: 'fullfiled', loading: false, error: false, res })
 		} catch (error) {
-			subject.next({ status: 'rejected', loading: false, error })
+			const status =
+				promise.isCancel && promise.isCancel(error) ? 'canceled' : 'rejected'
+			subject.next({ status, loading: false, error })
 		}
 	}
 
-	!lazy && run()
+	!lazy && dispatch()
 
-	return [subject, run]
+	return [subject, dispatch]
 }

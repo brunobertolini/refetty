@@ -1,8 +1,12 @@
 import { BehaviorSubject } from 'rxjs'
 
-export const createFetch = (handler, initialState) => {
+export const stateProvider = (handler, initialState) => {
 	const state = new BehaviorSubject(initialState)
-	const client = options => handler(options, state.value)
+
+	const client = (...args) => {
+		const res = handler(...args)
+		return typeof res === 'function' ? res(state.value) : res
+	}
 
 	client.state = state.value
 	client.setState = value =>
