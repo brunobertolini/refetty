@@ -7,8 +7,8 @@ const defaultOpts = {
 }
 
 export const asyncControl = (promise, opts = defaultOpts) => {
-	const [exec, cancel] = makeCancelable(promise, cancelMessage)
-	const [state, fetch] = asyncState(exec, lazy)
+	const [exec, cancel] = makeCancelable(promise, opts.cancelMessage)
+	const [state, fetch] = asyncState(exec, opts.lazy)
 
 	const dispatch = (...params) => {
 		cancel()
