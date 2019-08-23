@@ -1,17 +1,20 @@
 # Fetch
 
-## Basic Usage
+## Basic usage
+
+Install: `yarn add @refetty/fetch`
+
+Create a `fetch.js`:
 
 ```
-import axios from 'axios';
-import { refetty, useAsync } from 'refetty';
-import { compose } from 'ramda';
+import { stateProvider } from '@refetty/fetch'
+import axios from 'axios'
 
 const request = axios.create({
   baseURL: 'https://jsonplaceholder.typicode.com',
 });
 
-const client = (options, state) =>
+const handler = options => state =>
   request({
     ...options,
 		headers: {
@@ -22,6 +25,13 @@ const client = (options, state) =>
 
 const initialState = {}
 
-export const fetch = createFetch(client, initialState)
-export const setToken = token => fetch.setState(prev => ({ ...prev, token }))
+export const fetch = stateProvider(hanlder, initialState)
 ```
+
+And to change instance state:
+
+```
+fetch.setState(prev => ({ ...prev, token: '123' }))
+```
+
+## Advanced Usage
