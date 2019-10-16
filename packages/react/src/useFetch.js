@@ -9,5 +9,5 @@ export const useFetch = (...args) => {
 
 	useEffect(() => actions.cancel, [])
 
-	return [state, actions]
+	return [state && state.result && state.result.data, state, actions]
 }

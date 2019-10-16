@@ -18,7 +18,7 @@ export const asyncControl = (promise, opts = defaultOpts) => {
 	const setData = value =>
 		state.next({
 			...state.value,
-			res: typeof value === 'function' ? value(state.value.res) : value,
+			result: typeof value === 'function' ? value(state.value.result) : value,
 		})
 
 	return [state, { dispatch, cancel, setData }]

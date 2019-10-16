@@ -12,9 +12,14 @@ export const asyncState = (promise, lazy = false) => {
 		}
 
 		try {
-			const res = await promise(...args)
+			const result = await promise(...args)
 
-			subject.next({ status: 'fullfiled', loading: false, error: false, res })
+			subject.next({
+				status: 'fullfiled',
+				loading: false,
+				error: false,
+				result,
+			})
 		} catch (error) {
 			const status =
 				promise.isCancel && promise.isCancel(error) ? 'canceled' : 'rejected'
