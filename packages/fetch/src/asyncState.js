@@ -20,10 +20,14 @@ export const asyncState = (promise, lazy = false) => {
 				error: false,
 				result,
 			})
+
+			return result
 		} catch (error) {
 			const status =
 				promise.isCancel && promise.isCancel(error) ? 'canceled' : 'rejected'
 			subject.next({ status, loading: false, error })
+
+			throw error
 		}
 	}
 

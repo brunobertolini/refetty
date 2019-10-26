@@ -5,7 +5,8 @@
 	"scripts": {
 		"lint": "prettier \"src/**/*.{js,jsx,ts,tsx}\" --write",
 		"dev": "microbundle watch --target browser",
-		"build": "microbundle build --target browser"
+		"build": "microbundle build --target browser",
+		"test": "jest"
 	},
 	"main": "dist/index.js",
 	"umd:main": "dist/index.umd.js",

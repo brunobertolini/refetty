@@ -5,10 +5,11 @@
 		"setup": "yarn setup:clean && yarn setup:bs",
 		"setup:clean": "lerna clean -y",
 		"setup:bs": "lerna bootstrap",
-		"packages": "npm-run-all packages:*",
-		"packages:lint": "lerna run --parallel lint",
-		"packages:build": "lerna run build",
-		"prerelease": "yarn run packages",
+		"pkgs": "npm-run-all pkgs:*",
+		"pkgs:test": "lerna run --parallel test",
+		"pkgs:lint": "lerna run --parallel lint",
+		"pkgs:build": "lerna run --parallel build",
+		"prerelease": "yarn run pkgs",
 		"release": "lerna publish --conventional-commits",
 		"release:latest": "yarn release --npm-tag=latest --preid=beta"
 	},
@@ -38,15 +39,20 @@
 	},
 	"lint-staged": {
 		"*.{{js,jsx,mjs,ts,tsx,md,mdx}}": [
-			"yarn packages:lint",
+			"yarn pkgs:lint",
 			"git add"
 		]
 	},
 	"devDependencies": {
+		"@babel/core": "^7.6.4",
+		"@babel/preset-env": "^7.6.3",
 		"@commitlint/cli": "^8.1.0",
 		"@commitlint/config-conventional": "^8.1.0",
 		"@commitlint/config-lerna-scopes": "^8.1.0",
+		"babel-jest": "^24.9.0",
+		"babel-plugin-module-resolver": "^3.2.0",
 		"husky": "^3.0.4",
+		"jest": "^24.9.0",
 		"lerna": "^3.16.4",
 		"lint-staged": "^9.2.3",
 		"microbundle": "^0.11.0",
