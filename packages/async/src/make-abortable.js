@@ -9,7 +9,7 @@ export const makeAbortable = (
 
 	const getAbortController = () => {
 		if (!AbortController) {
-			return ''
+			return
 		}
 
 		const controller = new AbortController()
