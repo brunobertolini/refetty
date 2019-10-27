@@ -1,18 +1,23 @@
-import { makeCancelable } from './makeCancelable'
+import { makeAbortable } from './makeAbortable'
 import { asyncState } from './asyncState'
 
 const defaultOpts = {
 	lazy: false,
-	cancelMessage: 'Canceled',
+	abortMessage: 'Aborted',
 }
 
 export const asyncControl = (promise, opts = defaultOpts) => {
-	const [exec, cancel] = makeCancelable(promise, opts.cancelMessage)
-	const [state, fetch] = asyncState(exec, opts.lazy)
+	const [exec, abort] = makeAbortable(
+		promise,
+		opts.AbortController || promise.AbortController,
+		opts.abortMessage
+	)
+
+	const [state, run] = asyncState(exec, opts.lazy)
 
 	const dispatch = (...params) => {
-		cancel()
-		fetch(...params)
+		abort()
+		run(...params)
 	}
 
 	const setData = value =>
@@ -21,5 +26,5 @@ export const asyncControl = (promise, opts = defaultOpts) => {
 			result: typeof value === 'function' ? value(state.value.result) : value,
 		})
 
-	return [state, { dispatch, cancel, setData }]
+	return [state, { dispatch, abort, setData }]
 }

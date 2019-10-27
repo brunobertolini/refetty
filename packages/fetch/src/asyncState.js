@@ -24,7 +24,7 @@ export const asyncState = (promise, lazy = false) => {
 			return result
 		} catch (error) {
 			const status =
-				promise.isCancel && promise.isCancel(error) ? 'canceled' : 'rejected'
+				promise.isAborted && promise.isAborted(error) ? 'aborted' : 'rejected'
 			subject.next({ status, loading: false, error })
 
 			throw error
