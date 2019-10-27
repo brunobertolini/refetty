@@ -1,0 +1,30 @@
+import { makeAbortable } from './make-abortable'
+import { execState } from './exec-state'
+
+const defaultOpts = {
+	lazy: false,
+	abortMessage: 'Aborted',
+}
+
+export const control = (promise, opts = defaultOpts) => {
+	const [exec, abort] = makeAbortable(
+		promise,
+		opts.AbortController || promise.AbortController,
+		opts.abortMessage
+	)
+
+	const [state, run] = execState(exec, opts.lazy)
+
+	const dispatch = (...params) => {
+		abort()
+		run(...params)
+	}
+
+	const setData = value =>
+		state.next({
+			...state.value,
+			result: typeof value === 'function' ? value(state.value.result) : value,
+		})
+
+	return [state, { dispatch, abort, setData }]
+}
