@@ -1,6 +1,6 @@
 # Refetty
 
-Refetty is a set of tools to help on rest apis challange, like sdk creation.
+Refetty is a set of tools to help on REST APIs challange, like sdk creation.
 
 ## Fetch tools
 
