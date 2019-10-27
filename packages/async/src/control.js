@@ -20,11 +20,13 @@ export const control = (promise, opts = defaultOpts) => {
 		run(...params)
 	}
 
+	dispatch.abort = abort
+
 	const setData = value =>
 		state.next({
 			...state.value,
 			result: typeof value === 'function' ? value(state.value.result) : value,
 		})
 
-	return [state, { dispatch, abort, setData }]
+	return [state, dispatch, { setData }]
 }
