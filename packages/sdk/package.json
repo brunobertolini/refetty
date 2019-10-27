@@ -1,0 +1,35 @@
+{
+	"name": "@refetty/sdk",
+	"version": "0.2.0-beta.14",
+	"license": "MIT",
+	"scripts": {
+		"lint": "prettier \"src/**/*.{js,jsx,ts,tsx}\" --write",
+		"dev": "microbundle watch --target browser",
+		"build": "microbundle build --target browser",
+		"test": "jest"
+	},
+	"main": "dist/index.js",
+	"umd:main": "dist/index.umd.js",
+	"module": "dist/index.m.js",
+	"source": "src/index.js",
+	"files": [
+		"dist/",
+		"package.json",
+		"README.md"
+	],
+	"author": {
+		"name": "Bruno Bertolini",
+		"email": "dev@brunobertolini.com",
+		"url": "http://brunobertolini.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/brunobertolini/refetty"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"dependencies": {
+		"rxjs": "^6.5.2"
+	}
+}
