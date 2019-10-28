@@ -2,16 +2,13 @@
 	"name": "refetty",
 	"private": true,
 	"scripts": {
-		"setup": "yarn setup:clean && yarn setup:bs",
-		"setup:clean": "lerna clean -y",
-		"setup:bs": "lerna bootstrap",
-		"pkgs": "npm-run-all pkgs:*",
+		"pkgs": "run-s pkgs:*",
 		"pkgs:test": "lerna run --parallel test",
 		"pkgs:lint": "lerna run --parallel lint",
 		"pkgs:build": "lerna run --parallel build",
 		"prerelease": "yarn run pkgs",
 		"release": "lerna publish --conventional-commits",
-		"release:latest": "yarn release --npm-tag=latest --preid=beta"
+		"release:latest": "yarn release --npm-tag=latest --preid=rc"
 	},
 	"author": {
 		"name": "Bruno Bertolini",
