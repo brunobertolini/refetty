@@ -21,7 +21,7 @@ test('create simple with state', () => {
 test('add handled sdk fetch', () => {
 	const options = { a: 1 }
 
-	const sdk = createSDK(opts => (state, signal) => [opts, state, signal], {
+	const sdk = createSDK(opts => state => signal => [opts, state, signal], {
 		initialState: {},
 	})
 

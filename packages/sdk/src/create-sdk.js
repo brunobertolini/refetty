@@ -16,8 +16,8 @@ export const createSDK = (handler, { initialState, AbortController } = {}) => {
 	sdk.add = (...args) => {
 		const fn = args[1] || args[0]
 		const name = args[1] && args[0]
-
 		const handler = (...args) => fetch(fn(...args))
+
 		handler.AbortController = AbortController
 
 		if (name) {
