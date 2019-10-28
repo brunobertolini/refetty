@@ -17,7 +17,7 @@ export const control = (promise, opts = defaultOpts) => {
 
 	const dispatch = (...params) => {
 		abort()
-		run(...params)
+		return run(...params)
 	}
 
 	dispatch.abort = abort
