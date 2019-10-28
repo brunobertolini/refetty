@@ -3,12 +3,10 @@ import { BehaviorSubject } from 'rxjs'
 export const createSDK = (handler, { initialState, AbortController } = {}) => {
 	const state = new BehaviorSubject(initialState)
 
-	const cancelable = (...args) => signal => {
+	const fetch = (...args) => {
 		const res = handler(...args)
-		return typeof res === 'function' ? res(state.value, signal) : res
+		return typeof res === 'function' ? res(state.value) : res
 	}
-
-	const fetch = (...args) => cancelable(...args)()
 
 	const sdk = {
 		fetch,
@@ -19,17 +17,14 @@ export const createSDK = (handler, { initialState, AbortController } = {}) => {
 		const fn = args[1] || args[0]
 		const name = args[1] && args[0]
 
-		const handler = (...args) => cancelable(fn(...args))
+		const handler = (...args) => fetch(fn(...args))
+		handler.AbortController = AbortController
 
 		if (name) {
 			sdk[name] = handler
-			sdk[name].AbortController = AbortController
 		}
 
-		const endpoint = (...args) => handler(...args)()
-		endpoint.AbortController = AbortController
-
-		return endpoint
+		return handler
 	}
 
 	sdk.setState = value =>
