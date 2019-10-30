@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.3](https://github.com/brunobertolini/refetty/compare/v1.0.0-rc.2...v1.0.0-rc.3) (2019-10-30)
+
+
+### Bug Fixes
+
+* **react:** memo unmemoized ([842a255](https://github.com/brunobertolini/refetty/commit/842a255))
+
+
+
+
+
 # [1.0.0-rc.2](https://github.com/brunobertolini/refetty/compare/v1.0.0-rc.1...v1.0.0-rc.2) (2019-10-30)
 
 **Note:** Version bump only for package @refetty/react
