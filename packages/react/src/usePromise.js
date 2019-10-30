@@ -4,7 +4,7 @@ import { control } from '@refetty/async'
 import { useStateRx } from './useStateRx'
 
 export const usePromise = (...args) => {
-	const [rxState, dispatch, ...meta] = useMemo(() => control(...args), args)
+	const [rxState, dispatch, ...meta] = useMemo(() => control(...args), [])
 	const [state] = useStateRx(rxState)
 
 	useEffect(() => dispatch && dispatch.abort, [])
