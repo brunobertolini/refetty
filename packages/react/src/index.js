@@ -1,5 +1,4 @@
 export * from './useStateRx'
-export * from './useAsync'
-export * from './useCancelable'
+export * from './usePromise'
 export * from './useFetch'
 export * from './useResource'

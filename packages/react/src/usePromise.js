@@ -7,7 +7,7 @@ export const usePromise = (...args) => {
 	const [rxState, dispatch, ...meta] = useMemo(() => control(...args), args)
 	const [state] = useStateRx(rxState)
 
-	useEffect(() => dispatch?.abort, [])
+	useEffect(() => dispatch && dispatch.abort, [])
 
-	return [state?.result, state, dispatch, ...meta]
+	return [state && state.result, state, dispatch, ...meta]
 }
