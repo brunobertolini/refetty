@@ -1,6 +1,6 @@
 {
 	"name": "@refetty/async",
-	"version": "0.2.0-beta.14",
+	"version": "1.0.0-rc.0",
 	"license": "MIT",
 	"scripts": {
 		"lint": "prettier \"src/**/*.{js,jsx,ts,tsx}\" --write",
