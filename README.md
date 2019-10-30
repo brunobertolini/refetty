@@ -1,3 +1,7 @@
+<h1 align="center">
+  <img src="/logo.png" alt="Refetty" />
+</h1>
+
 # Refetty
 
 Refetty is a set of tools to help on REST APIs challange, like sdk creation.
