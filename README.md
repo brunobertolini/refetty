@@ -4,10 +4,13 @@
 
 Refetty is a set of tools to help on REST APIs challange, like sdk creation.
 
-## Fetch tools
 
-Framework agnostic, export some tools to handle generic promise run status, and offer a way to handle canceling.
+## Packages
 
-## React
+This repository is a monorepo that we manage using  [Lerna](https://github.com/lerna/lerna). That means that we actually publish  [several packages](https://github.com/brunobertolini/refetty/blob/master/packages)  to npm from the same codebase, including:
 
-A set of hooks to use fetch tools.
+| Package                  | Version                                                                   | Description                                                                         |
+| ------------------------ | ------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| [sdk](/packages/sdk)     | ![npm](https://img.shields.io/npm/v/@refetty/sdk.svg?style=flat-square)   | State handler with AbortController support                                          |
+| [async](/packages/async) | ![npm](https://img.shields.io/npm/v/@refetty/async.svg?style=flat-square) | Promises handle methods                                                             |
+| [react](/packages/react) | ![npm](https://img.shields.io/npm/v/@refetty/react.svg?style=flat-square) | Hooks to work with promises (using [async](/packages/async) package under the hood) |
