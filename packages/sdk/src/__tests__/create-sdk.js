@@ -30,3 +30,19 @@ test('add handled sdk fetch', () => {
 	const result = sdk.getUsers(options)(123456)
 	expect(result).toEqual([options, {}, 123456])
 })
+
+test('add handled sdk fetch with state', () => {
+	const options = { a: 1 }
+	const initialState = {
+		state: 10,
+	}
+
+	const sdk = createSDK(opts => state => signal => [opts, state, signal], {
+		initialState,
+	})
+
+	sdk.add('getUsers', params => state => [params, state])
+
+	const result = sdk.getUsers(options)(123456)
+	expect(result).toEqual([[options, initialState], initialState, 123456])
+})
