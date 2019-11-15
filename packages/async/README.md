@@ -1,12 +1,12 @@
 # Refetty - Async
 
-Refetty promise tools to manages promise state and handle promise cancels
+Refetty promise tools to manages promise state and handle promise aborts
 
 ## Usage
 
 To install run `yarn add @refetty/async`
 
-## Promise state manager
+### Promise state manager
 
 The `execState` is a simple handler, you will pass a promise to them was first params, and a boolean was second, if true, it will not execute promise initially, and wait for a manual call.
 
@@ -17,11 +17,16 @@ State is a obersvable, so you can call subsbribe and unsubscribe methods.
 
 ```js
 import { execState } from '@refetty/async'
-const [state, run] = execState(promise)
+
+const lazy = true // default false
+
+// to create state
+const [state, run] = execState(promise, lazy)
 
 // to listen state chages
 const listner = state.subscribe(value => console.log('State changes:' value))
 
+// to unsubscribe listner
 state.unsubscribe(listner)
 ```
 
@@ -33,4 +38,3 @@ State value is an object with follow props:
 - error - a rejected promise response with `rejected` or `aborted` status (cleared in all re-executions)
 
 > Note: aborted status depends on the promise to have an `isAborted` method that checks error (`promise.isAborted`)
-
