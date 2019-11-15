@@ -1,1 +1,1 @@
-:warning: # Resource - WIP :warning:
+# :warning: Resource - WIP :warning:
