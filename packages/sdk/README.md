@@ -29,6 +29,12 @@ export const sdk = createSDK(opts => state => axios({
     Authorization: `Bearer ${state.token}`
   }
 }))
+
+// To set state
+sdk.setState(prevState => nextState)
+
+// to access state out of the box
+console.log(sdk.state)
 ```
 
 ### Creating endpoints handlers
