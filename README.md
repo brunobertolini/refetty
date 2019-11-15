@@ -84,6 +84,8 @@ const List = () => {
 }
 ```
 
+For more detailed explanations and examples, see the packages docs.
+
 ## Contribute
 
 You can help improving this project sending PRs and helping with issues.
