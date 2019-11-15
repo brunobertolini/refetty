@@ -15,7 +15,7 @@ export const execState = (promise, lazy = false) => {
 			const result = await promise(...args)
 
 			subject.next({
-				status: 'fullfiled',
+				status: 'fulfilled',
 				loading: false,
 				error: false,
 				result,
