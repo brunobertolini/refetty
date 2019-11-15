@@ -31,7 +31,7 @@ This repository is a monorepo that we manage using  [Lerna](https://github.com/l
 Install
 
 ```
-  yarn @refetty/sdk @refetty/axios @refetty/react
+  yarn add @refetty/sdk @refetty/axios @refetty/react
 ```
 
 
