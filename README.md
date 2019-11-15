@@ -83,7 +83,24 @@ Now, in your react components:
 
 ```js
 import { useFetch } from '@refetty/react'
-import { getUsers } from './api.js'
+import { login, getUsers } from './api.js'
+
+const Login = () => {
+  const onSubmit = async formValues => {
+    try {
+      const { data } = await login(formValues)
+      // do anything on success
+    } catch (error) {
+      //...
+    }
+  }
+
+  return (
+    <Form onSubmit={onSubmit}>
+      ...
+    </Form>
+  )
+}
 
 const List = () => {
   const [data, { loading }, fetch] = useFetch(getUsers)
