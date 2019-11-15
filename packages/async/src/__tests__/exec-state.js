@@ -50,7 +50,7 @@ test('correct passed args to promise', async () => {
 	expect(subject.value).toEqual({
 		error: false,
 		loading: false,
-		status: 'fullfiled',
+		status: 'fulfilled',
 		result,
 	})
 })
