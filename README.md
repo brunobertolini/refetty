@@ -57,12 +57,22 @@ const handler = options => state => request({
   }
 })
 
-const api = createSDK(handler, {
+const sdk = createSDK(handler, {
   initialState: {},
   AbortController: AxiosAbortController
 })
 
-export const getUsers = api.add(params => ({
+export const login = sdk.add(auth => ({
+  method: 'get',
+  url: '/login',
+  auth,
+  transformResponse: axios.defaults.transformResponse.concat(data => {
+    sdk.setState(prevState => ({ ...prevState, token: data.token }))
+    return data
+  })
+}))
+
+export const getUsers = sdk.add(params => ({
   method: 'get',
   url: '/users',
   params
