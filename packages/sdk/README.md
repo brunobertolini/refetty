@@ -1,7 +1,12 @@
 
 # Refetty - SDK
 
-...
+Refetty/sdk helps you on sdk creation to transform your api data fetch usage process
+
+- :package: Super tiny (~3kb)
+- :electric_plug: Lib agnostic - use fetch use whatever you want (but we recommend axios :wink:)
+- :crystal_ball: AbortController friendly
+- :trophy: State management on sdk, (**stop passing access token to all requests manually** :pray:)
 
 ## Usage
 
