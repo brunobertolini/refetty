@@ -16,10 +16,20 @@ export const createSDK = (handler, { initialState, AbortController } = {}) => {
 	sdk.add = (...args) => {
 		const fn = args[1] || args[0]
 		const name = args[1] && args[0]
-		const handler = (...args) => {
-			const result = fn(...args)
-			const data = typeof result === 'function' ? result(state.value) : result
-			return fetch(data)
+
+		function handler(...args) {
+			if (!(this instanceof handler)) {
+				return new handler(...args)
+			}
+
+			const options = fn(...args)
+			const data =
+				typeof options === 'function' ? options(state.value) : options
+			const result = fetch(data)
+
+			return typeof result === 'function' && this.signal
+				? result(this.signal)
+				: result
 		}
 
 		handler.AbortController = AbortController
