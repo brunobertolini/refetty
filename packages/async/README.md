@@ -38,3 +38,50 @@ State value is an object with follow props:
 - error - a rejected promise response with `rejected` or `aborted` status (cleared in all re-executions)
 
 > Note: aborted status depends on the promise to have an `isAborted` method that checks error (`promise.isAborted`)
+
+### Promise abort handler
+
+In `makeAbortable`, we require two args: a function and an instanciable abort controller [spec compilant](https://dom.spec.whatwg.org/#dom-abortcontroller-abortcontroller).
+
+This return an array with two items, the first is a handled dispatcher, every call will create a new instance of abort controller. And the aborter function as second. Let's me show the code:
+
+```js
+const handler = params => signal => fetch({
+	...params,
+	signal
+})
+
+const [dispath, abort] = makeCancelable(handler, AbortController)
+
+dispath({
+	method: 'get',
+	url: '/users
+})
+
+abort()
+```
+
+> Note: the `abort()` function will not called automatically on call dispatch again.
+
+
+### Putting all together
+
+To make our dev process painless, you have the option to use all-in-one method. The `control` method uses `execState` and `makeCancelable` under the hood. It's expect	only one required param: promise. Abort Controller need be a prop on promise, like this:
+
+```js
+import { control } from '@refetty/async'
+
+const promise = params => signal => fetch(...)
+promise.AbortContoller = AbortController
+
+const [state, dispatch] = control(promise)
+```
+
+Unlike from `makeCancelable`, every `dispatch` call will call `abort` function automatically before.
+And if you need use `abort` by yourself, you can acess them on `dispatch.abort()`
+
+It's has a second param too, option object when you can pass `lazy` and 'abortMessage`
+
+```js
+const [state, dispatch] = control(promise, { lazy: true, abortMessage: 'This request was aborted!' })
+```
