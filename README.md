@@ -6,7 +6,6 @@
 
 > **Refetty is a set of tools to help on REST API consume challenge**, like promise cancelable handler, sdk creation ands promise state manager
 
-
 ## Highlights
 
 - :tada: Generic promise state handlers

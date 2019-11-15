@@ -1,7 +1,9 @@
 
 # Refetty - SDK
 
-Refetty/sdk helps you on sdk creation to transform your api data fetch usage process
+> Refetty/sdk helps you on sdk creation to transform your api data fetch usage process
+
+## Highlightss
 
 - :package: Super tiny (~3kb)
 - :electric_plug: Lib agnostic - use fetch use whatever you want (but we recommend axios :wink:)
