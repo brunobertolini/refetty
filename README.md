@@ -4,7 +4,7 @@
 
 [![Build Status](https://travis-ci.org/brunobertolini/refetty.svg?branch=develop)](https://travis-ci.org/brunobertolini/refetty)
 
-> **Refetty is a set of tools to help on REST API consume challenge**, like promise cancelable handler, sdk creation and asynchronous promise state manager
+> **Refetty is a set of tools to help on REST API consume challenge**, like promise cancelable handler, sdk creation ands promise state manager
 
 
 ## Highlights
@@ -25,6 +25,64 @@ This repository is a monorepo that we manage using  [Lerna](https://github.com/l
 | [async](/packages/async) | ![npm](https://img.shields.io/npm/v/@refetty/async.svg?style=flat-square) | Promises handle methods                                                             |
 | [react](/packages/react) | ![npm](https://img.shields.io/npm/v/@refetty/react.svg?style=flat-square) | Hooks to work with promises (using [async](/packages/async) package under the hood) |
 
+
+## Basic Usage
+
+Install
+
+```
+  yarn @refetty/sdk @refetty/axios @refetty/react
+```
+
+
+Create an `api.js` file to create your basic sdk
+
+```js
+import { createSDK } from '@refetty/sdk'
+import { AxiosAbortController } from '@refetty/axios'
+import { axios } from 'axios'
+
+const request = axios.create({
+  baseURL: 'http://api.example.com',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+})
+
+const handler = options => state => request({
+  ...options,
+  headers: {
+    ...options.headers,
+    ...(state.token && { Authorization: `Bearer ${state.token}` }),
+  }
+})
+
+const api = createSDK(handler, {
+  initialState: {},
+  AbortController: AxiosAbortController
+})
+
+export const getUsers = api.add(params => ({
+  method: 'get',
+  url: '/users',
+  params
+}))
+```
+
+Now, in your react components:
+
+```js
+import { useFetch } from '@refetty/react'
+import { getUsers } from './api.js'
+
+const List = () => {
+  const [data, { loading }, fetch] = useFetch(getUsers)
+ // if you don't want fetch data in onMount, use useFetch(getUsers, { lazy: true }),
+ // and do trigger "fetch" function to dispatch request when you want
+
+  return loading ? <Loading /> : data.map(user => <UserCard {...user} />)
+}
+```
 
 ## Contribute
 
