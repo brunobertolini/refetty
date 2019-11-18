@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.5](https://github.com/brunobertolini/refetty/compare/v1.0.0-rc.4...v1.0.0-rc.5) (2019-11-18)
+
+
+### Bug Fixes
+
+* **async:** fulfilled status string ([94d685a](https://github.com/brunobertolini/refetty/commit/94d685a))
+
+
+
+
+
 # [1.0.0-rc.1](https://github.com/brunobertolini/refetty/compare/v1.0.0-rc.0...v1.0.0-rc.1) (2019-10-30)
 
 

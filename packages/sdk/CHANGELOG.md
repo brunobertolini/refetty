@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.5](https://github.com/brunobertolini/refetty/compare/v1.0.0-rc.4...v1.0.0-rc.5) (2019-11-18)
+
+
+### Features
+
+* **sdk:** add suport to meta abort signal ([ad9b2e7](https://github.com/brunobertolini/refetty/commit/ad9b2e7))
+
+
+
+
+
 # [1.0.0-rc.4](https://github.com/brunobertolini/refetty/compare/v1.0.0-rc.3...v1.0.0-rc.4) (2019-11-14)
 
 
