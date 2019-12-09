@@ -1926,13 +1926,6 @@
     universal-user-agent "^3.0.0"
     url-template "^2.0.8"
 
-"@refetty/fetch@^0.2.0-beta.14":
-  version "0.2.0-beta.14"
-  resolved "https://registry.yarnpkg.com/@refetty/fetch/-/fetch-0.2.0-beta.14.tgz#be9bbdbd6c97139daa8a89a7d22a63db594d2896"
-  integrity sha512-s3+6YKFtz/qGD2IINXQhLVXHQEgbJhoUdDkQ75r/16UX6e+hOcLgIyhw2awHGDaBNTO8cQqpqrQykmEYvy3LLA==
-  dependencies:
-    rxjs "^6.5.2"
-
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@samverschueren/stream-to-observable/-/stream-to-observable-0.3.0.tgz#ecdf48d532c58ea477acfcab80348424f8d0662f"

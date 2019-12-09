@@ -1,7 +1,7 @@
-import { BehaviorSubject } from 'rxjs'
+import { observable } from '@refetty/observable'
 
 export const createSDK = (handler, { initialState, AbortController } = {}) => {
-	const state = new BehaviorSubject(initialState)
+	const state = observable(initialState)
 
 	const fetch = (...args) => {
 		const res = handler(...args)

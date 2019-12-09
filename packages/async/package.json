@@ -30,6 +30,6 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"rxjs": "^6.5.2"
+		"@refetty/observable": "1.0.0-rc.5"
 	}
 }

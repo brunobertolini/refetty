@@ -1,7 +1,7 @@
-import { BehaviorSubject } from 'rxjs'
+import { observable } from '@refetty/observable'
 
 export const execState = (promise, lazy = false) => {
-	const subject = new BehaviorSubject({
+	const subject = observable({
 		status: lazy ? 'idle' : 'pending',
 		loading: !lazy,
 	})

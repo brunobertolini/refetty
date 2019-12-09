@@ -1,11 +1,11 @@
-import { BehaviorSubject } from 'rxjs'
+import { observable } from '@refetty/observable'
 
 export const makeAbortable = (
 	promise,
 	AbortController,
 	defaulMessage = 'Aborted'
 ) => {
-	const subject = new BehaviorSubject(false)
+	const subject = observable(false)
 
 	const getAbortController = () => {
 		if (!AbortController) {

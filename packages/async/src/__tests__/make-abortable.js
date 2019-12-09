@@ -1,7 +1,7 @@
-import { BehaviorSubject } from 'rxjs'
+import { observable } from '@refetty/observable'
 import { makeAbortable } from '~/make-abortable'
 
-jest.mock('rxjs')
+jest.mock('@refetty/observable')
 
 test('unwrapped promise', () => {
 	const handler = params => new Promise(resolve => resolve(params))
@@ -13,18 +13,18 @@ test('unwrapped promise', () => {
 })
 
 test('create new abort controller instance', () => {
-	let state = {}
+	const state = {}
 
-	function MockBehaviorSubject(initalValue) {
-		this.value = initalValue
+	const mokcObservable = initalValue => ({
+		value: initalValue,
 
-		this.next = value => {
+		next(value) {
 			this.value = value
 			state.value = value
-		}
-	}
+		},
+	})
 
-	BehaviorSubject.mockImplementation(MockBehaviorSubject)
+	observable.mockImplementation(mokcObservable)
 
 	function AbortController() {
 		this.signal = 'signal'
