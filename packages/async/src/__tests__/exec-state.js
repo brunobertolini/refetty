@@ -1,8 +1,7 @@
 import { execState } from '~/exec-state'
 
 test('async state inital run', () => {
-	const isLazy = false
-	const [subject] = execState(() => {}, isLazy)
+	const [subject] = execState(() => {}, { lazy: false })
 
 	expect(subject.value).toEqual({
 		loading: true,
@@ -11,8 +10,7 @@ test('async state inital run', () => {
 })
 
 test('create as lazy', () => {
-	const isLazy = true
-	const [subject] = execState(() => {}, isLazy)
+	const [subject] = execState(() => {}, { lazy: true })
 
 	expect(subject.value).toEqual({
 		loading: false,
@@ -23,8 +21,7 @@ test('create as lazy', () => {
 test('lazy run', async () => {
 	const promise = params => new Promise(resolve => resolve(params))
 
-	const isLazy = true
-	const [subject, dispatch] = execState(promise, isLazy)
+	const [subject, dispatch] = execState(promise, { lazy: true })
 
 	expect(subject.value).toEqual({
 		loading: false,
@@ -43,8 +40,7 @@ test('lazy run', async () => {
 test('correct passed args to promise', async () => {
 	const promise = params => new Promise(resolve => resolve(params))
 
-	const isLazy = true
-	const [subject, dispatch] = execState(promise, isLazy)
+	const [subject, dispatch] = execState(promise, { lazy: true })
 	const result = await dispatch('success')
 
 	expect(subject.value).toEqual({
@@ -58,8 +54,7 @@ test('correct passed args to promise', async () => {
 test('error handler', async () => {
 	const promise = params => new Promise((resolve, reject) => reject(params))
 
-	const isLazy = true
-	const [subject, dispatch] = execState(promise, isLazy)
+	const [subject, dispatch] = execState(promise, { lazy: true })
 
 	try {
 		await dispatch('error')
@@ -76,8 +71,7 @@ test('abort dispatch', async () => {
 	const promise = params => new Promise((resolve, reject) => reject(params))
 	promise.isAborted = () => true
 
-	const isLazy = true
-	const [subject, dispatch] = execState(promise, isLazy)
+	const [subject, dispatch] = execState(promise, { lazy: true })
 
 	try {
 		await dispatch('error')

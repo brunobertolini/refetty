@@ -1,14 +1,20 @@
 import { observable } from '@refetty/observable'
 
-export const execState = (promise, lazy = false) => {
+const defaultOpts = {
+	lazy: false,
+	cache: true,
+}
+
+export const execState = (promise, opts = defaultOpts) => {
 	const subject = observable({
-		status: lazy ? 'idle' : 'pending',
-		loading: !lazy,
+		status: opts.lazy ? 'idle' : 'pending',
+		loading: !opts.lazy,
 	})
 
 	const dispatch = async (...args) => {
 		if (!subject.value.loading || subject.value.error) {
-			subject.next({ status: 'pending', loading: true, error: false })
+			const next = { status: 'pending', loading: true, error: false }
+			subject.next(prev => (opts.cache ? { ...prev, ...next } : next))
 		}
 
 		try {
@@ -29,7 +35,7 @@ export const execState = (promise, lazy = false) => {
 		}
 	}
 
-	!lazy && dispatch()
+	!opts.lazy && dispatch()
 
 	return [subject, dispatch]
 }

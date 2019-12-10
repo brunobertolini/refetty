@@ -13,7 +13,7 @@ export const control = (promise, opts = defaultOpts) => {
 		opts.abortMessage
 	)
 
-	const [state, run] = execState(exec, opts.lazy)
+	const [state, run] = execState(exec, opts)
 
 	const dispatch = (...params) => {
 		abort()
