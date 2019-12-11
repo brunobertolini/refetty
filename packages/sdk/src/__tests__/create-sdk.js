@@ -1,6 +1,6 @@
 import { createSDK } from '~/create-sdk'
 
-test('create simple handler', () => {
+test('should create simple handler', () => {
 	const options = { a: 1 }
 	const sdk = createSDK(opts => opts)
 
@@ -9,7 +9,7 @@ test('create simple handler', () => {
 	expect(result).toBe(options)
 })
 
-test('create simple with state', () => {
+test('should create simple with state', () => {
 	const options = { a: 1 }
 	const sdk = createSDK(opts => state => [opts, state], { initialState: {} })
 
@@ -18,7 +18,7 @@ test('create simple with state', () => {
 	expect(result).toEqual([options, {}])
 })
 
-test('add handled sdk fetch', () => {
+test('should add handled sdk fetch', () => {
 	const options = { a: 1 }
 
 	const sdk = createSDK(opts => state => signal => [opts, state, signal], {
@@ -31,7 +31,7 @@ test('add handled sdk fetch', () => {
 	expect(result).toEqual([options, {}, 123456])
 })
 
-test('add handled sdk fetch with state', () => {
+test('should add handled sdk fetch with state', () => {
 	const options = { a: 1 }
 	const initialState = {
 		state: 10,
@@ -45,4 +45,80 @@ test('add handled sdk fetch with state', () => {
 
 	const result = sdk.getUsers(options)(123456)
 	expect(result).toEqual([[options, initialState], initialState, 123456])
+})
+
+test('should return handled sdk fetch with state', () => {
+	const options = { a: 1 }
+	const initialState = {
+		state: 10,
+	}
+
+	const sdk = createSDK(opts => state => signal => [opts, state, signal], {
+		initialState,
+	})
+
+	const getUsers = sdk.add('getUsers', params => state => [params, state])
+
+	const result = getUsers(options)(123456)
+	expect(result).toEqual([[options, initialState], initialState, 123456])
+})
+
+test('should return handled sdk fetch with state and one param', () => {
+	const options = { a: 1 }
+	const initialState = {
+		state: 10,
+	}
+
+	const sdk = createSDK(opts => state => signal => [opts, state, signal], {
+		initialState,
+	})
+
+	const getUsers = sdk.add(params => state => [params, state])
+
+	const result = getUsers(options)(123456)
+	expect(result).toEqual([[options, initialState], initialState, 123456])
+})
+
+test('should resolve handler', async () => {
+	const options = { a: 1 }
+	const initialState = {
+		state: 10,
+	}
+
+	const sdk = createSDK(
+		opts => state => signal => Promise.resolve([opts, state, signal]),
+		{
+			initialState,
+		}
+	)
+
+	const getUsers = sdk.add(params => state => [params, state])
+
+	await expect(getUsers(options)(123456)).resolves.toEqual([
+		[options, initialState],
+		initialState,
+		123456,
+	])
+})
+
+test('should reject handler', async () => {
+	const options = { a: 1 }
+	const initialState = {
+		state: 10,
+	}
+
+	const sdk = createSDK(
+		opts => state => signal => Promise.reject([opts, state, signal]),
+		{
+			initialState,
+		}
+	)
+
+	const getUsers = sdk.add(params => state => [params, state])
+
+	await expect(getUsers(options)(123456)).rejects.toEqual([
+		[options, initialState],
+		initialState,
+		123456,
+	])
 })
