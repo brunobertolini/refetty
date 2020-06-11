@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.8](https://github.com/brunobertolini/refetty/compare/v1.0.0-rc.7...v1.0.0-rc.8) (2020-06-11)
+
+
+### Bug Fixes
+
+* using promise and opts on useMemo dependencies array ([cb6c7c5](https://github.com/brunobertolini/refetty/commit/cb6c7c5))
+
+
+
+
+
 # [1.0.0-rc.7](https://github.com/brunobertolini/refetty/compare/v1.0.0-rc.6...v1.0.0-rc.7) (2020-03-09)
 
 
