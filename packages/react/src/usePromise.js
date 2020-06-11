@@ -4,12 +4,12 @@ import { control } from '@refetty/async'
 import { useStateRx } from './useStateRx'
 
 export const usePromise = (promise, { lazy, ...opts } = {}) => {
-	const [rxState, dispatch, ...meta] = useMemo(
+	const [observable, dispatch, ...meta] = useMemo(
 		() => control(promise, { ...opts, lazy: true }),
 		[promise, opts]
 	)
 
-	const [state] = useStateRx(rxState)
+	const [state] = useStateRx(observable)
 
 	useEffect(() => {
 		!lazy && dispatch()
