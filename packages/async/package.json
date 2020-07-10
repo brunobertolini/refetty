@@ -1,6 +1,6 @@
 {
 	"name": "@refetty/async",
-	"version": "1.0.0-rc.6",
+	"version": "1.0.0-rc.10",
 	"license": "MIT",
 	"scripts": {
 		"lint": "prettier \"src/**/*.{js,jsx,ts,tsx}\" --write",
@@ -30,6 +30,6 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"@refetty/observable": "^1.0.0-rc.6"
+		"@refetty/observable": "^1.0.0-rc.10"
 	}
 }
