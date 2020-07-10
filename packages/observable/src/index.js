@@ -1,4 +1,4 @@
-export const observable = initialValue => {
+export const observable = (initialValue) => {
 	const listners = []
 
 	return {
@@ -15,7 +15,7 @@ export const observable = initialValue => {
 
 		next(value) {
 			this.value = typeof value === 'function' ? value(this.value) : value
-			listners.forEach(fn => fn(this.value))
+			listners.forEach((fn) => fn(this.value))
 			return this.value
 		},
 	}

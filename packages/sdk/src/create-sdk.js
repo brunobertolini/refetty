@@ -41,10 +41,10 @@ export const createSDK = (handler, { initialState, AbortController } = {}) => {
 		return handler
 	}
 
-	sdk.setState = value =>
+	sdk.setState = (value) =>
 		state.next(typeof value === 'function' ? value(state.value) : value)
 
-	state.subscribe(value => {
+	state.subscribe((value) => {
 		sdk.state = value
 	})
 

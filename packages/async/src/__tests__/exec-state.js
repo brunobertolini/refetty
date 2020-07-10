@@ -21,7 +21,7 @@ test('create as lazy', () => {
 })
 
 test('lazy run', async () => {
-	const promise = params => new Promise(resolve => resolve(params))
+	const promise = (params) => new Promise((resolve) => resolve(params))
 
 	const isLazy = true
 	const [subject, dispatch] = execState(promise, isLazy)
@@ -41,7 +41,7 @@ test('lazy run', async () => {
 })
 
 test('correct passed args to promise', async () => {
-	const promise = params => new Promise(resolve => resolve(params))
+	const promise = (params) => new Promise((resolve) => resolve(params))
 
 	const isLazy = true
 	const [subject, dispatch] = execState(promise, isLazy)
@@ -56,7 +56,7 @@ test('correct passed args to promise', async () => {
 })
 
 test('error handler', async () => {
-	const promise = params => new Promise((resolve, reject) => reject(params))
+	const promise = (params) => new Promise((resolve, reject) => reject(params))
 
 	const isLazy = true
 	const [subject, dispatch] = execState(promise, isLazy)
@@ -73,7 +73,7 @@ test('error handler', async () => {
 })
 
 test('abort dispatch', async () => {
-	const promise = params => new Promise((resolve, reject) => reject(params))
+	const promise = (params) => new Promise((resolve, reject) => reject(params))
 	promise.isAborted = () => true
 
 	const isLazy = true

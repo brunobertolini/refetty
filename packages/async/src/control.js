@@ -22,7 +22,7 @@ export const control = (promise, opts = defaultOpts) => {
 
 	dispatch.abort = abort
 
-	const setData = value =>
+	const setData = (value) =>
 		state.next({
 			...state.value,
 			result: typeof value === 'function' ? value(state.value.result) : value,

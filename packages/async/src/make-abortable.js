@@ -17,7 +17,7 @@ export const makeAbortable = (
 		return controller.signal
 	}
 
-	const abort = message =>
+	const abort = (message) =>
 		subject.value && subject.value.abort(message || defaulMessage)
 
 	const dispatch = (...params) => {

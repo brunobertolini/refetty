@@ -13,7 +13,7 @@ test('should change value on call next with string', () => {
 
 test('should change value on call next with funciton', () => {
 	const subject = observable('initial')
-	subject.next(v => `${v}next`)
+	subject.next((v) => `${v}next`)
 	expect(subject.value).toEqual('initialnext')
 })
 
@@ -21,7 +21,7 @@ test('should add listner to subject', () => {
 	let called = false
 	const subject = observable('initial')
 
-	subject.subscribe(value => {
+	subject.subscribe((value) => {
 		called = true
 		expect(value).toEqual('next')
 	})
@@ -48,7 +48,7 @@ test('should remove specific listner from subject', () => {
 	let called = false
 	const subject = observable('initial')
 
-	const lisnter = subject.subscribe(value => {
+	const lisnter = subject.subscribe((value) => {
 		expect(value).toEqual('next')
 	})
 

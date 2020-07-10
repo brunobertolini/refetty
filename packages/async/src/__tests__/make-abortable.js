@@ -4,7 +4,7 @@ import { makeAbortable } from '~/make-abortable'
 jest.mock('@refetty/observable')
 
 test('unwrapped promise', () => {
-	const handler = params => new Promise(resolve => resolve(params))
+	const handler = (params) => new Promise((resolve) => resolve(params))
 
 	const [dispatch] = makeAbortable(handler)
 	const resolve = dispatch('params')
@@ -15,7 +15,7 @@ test('unwrapped promise', () => {
 test('create new abort controller instance', () => {
 	const state = {}
 
-	const mokcObservable = initalValue => ({
+	const mokcObservable = (initalValue) => ({
 		value: initalValue,
 
 		next(value) {
@@ -39,7 +39,7 @@ test('create new abort controller instance', () => {
 })
 
 test('pass signal to promise', () => {
-	const promise = params => signal => [params, signal]
+	const promise = (params) => (signal) => [params, signal]
 
 	function AbortController() {
 		this.signal = 'signal'
@@ -52,11 +52,11 @@ test('pass signal to promise', () => {
 })
 
 test('abort promise', async () => {
-	const handler = () => () => new Promise(resolve => {})
+	const handler = () => () => new Promise((resolve) => {})
 
 	function AbortController() {
 		this.signal = 'signal'
-		this.abort = message => message
+		this.abort = (message) => message
 	}
 
 	const [dispatch, abort] = makeAbortable(handler, AbortController)
