@@ -3,16 +3,15 @@ import { control } from '@refetty/async'
 
 import { useStateRx } from './useStateRx'
 
-export const usePromise = (promise, { lazy, ...opts } = {}) => {
+export const usePromise = (promise, opts) => {
 	const [observable, dispatch, ...meta] = useMemo(
-		() => control(promise, { ...opts, lazy: true }),
-		[promise, opts]
+		() => control(promise, opts),
+		[promise, JSON.stringify(opts)]
 	)
 
 	const [state] = useStateRx(observable)
 
 	useEffect(() => {
-		!lazy && dispatch()
 		return dispatch && dispatch.abort
 	}, [])
 
