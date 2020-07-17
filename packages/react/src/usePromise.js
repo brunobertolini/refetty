@@ -1,9 +1,11 @@
-import { useMemo, useEffect } from 'react'
+import { useMemo, useEffect, useCallback } from 'react'
 import { control } from '@refetty/async'
 
 import { useStateRx } from './useStateRx'
 
-export const usePromise = (promise, opts) => {
+export const usePromise = (callback, opts) => {
+	const promise = useCallback(callback, [])
+
 	const [observable, dispatch, ...meta] = useMemo(
 		() => control(promise, opts),
 		[promise, JSON.stringify(opts)]
