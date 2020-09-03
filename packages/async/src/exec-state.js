@@ -25,7 +25,9 @@ export const execState = (promise, lazy = false) => {
 		} catch (error) {
 			const status =
 				promise.isAborted && promise.isAborted(error) ? 'aborted' : 'rejected'
+
 			subject.next({ status, loading: false, error })
+			return Promise.reject(error)
 		}
 	}
 
