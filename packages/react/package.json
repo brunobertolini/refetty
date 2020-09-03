@@ -1,6 +1,6 @@
 {
 	"name": "@refetty/react",
-	"version": "1.0.0-war.0",
+	"version": "1.0.0-rc.10",
 	"license": "MIT",
 	"scripts": {
 		"lint": "prettier \"src/**/*.{js,jsx,ts,tsx}\" --write",
