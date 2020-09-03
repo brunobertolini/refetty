@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.11](https://github.com/brunobertolini/refetty/compare/v1.0.0-war.0...v1.0.0-rc.11) (2020-09-03)
+
+
+### Bug Fixes
+
+* missing promise return on error ([9975b1d](https://github.com/brunobertolini/refetty/commit/9975b1d))
+
+
+
+
+
 # [1.0.0-war.0](https://github.com/brunobertolini/refetty/compare/v1.0.0-rc.10...v1.0.0-war.0) (2020-07-17)
 
 **Note:** Version bump only for package refetty
